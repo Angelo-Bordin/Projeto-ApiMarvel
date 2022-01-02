@@ -1,65 +1,81 @@
 <html>
     <head>
-        <style>
-            img{
-                width: 300px;
-                border-bottom-style: solid;
-                border-top-left-radius: 16px;
-                border-top-right-radius: 16px;
-            }
-
-            .personagem{
-                width: 300px;
-                margin: 20px;
-                border-style: solid;
-                border-radius: 16px;
-                text-align: center;
-            }
-        </style>
+        <title>Api Marvel</title>
+        <link rel="stylesheet" type="text/css" href="apiCss.css" media="screen" />
     </head>
-    <body>
-        <div id="herois"
-            style=
-            "display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;">
+    <body id="corpo" style="background-color: #f00">
+        <header id="cabecalho">
+            <h1> Projeto de Utilização - API ©</h1>
+        </header>
+        <div id="herois">
         </div>
     </body>
-        <script>
-            const timeStamp = '1640717903935';
-            const apiKey    = '8aad93b3f4c0877d45718b61951bdeca';
-            const hash      = '2c877bb0dcd41cad12288d9f4108cb56';
+    <script>
+        const timeStamp = '1640717903935';  
+        const apiKey    = '8aad93b3f4c0877d45718b61951bdeca';
+        const hash      = '2c877bb0dcd41cad12288d9f4108cb56';
 
-            fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${timeStamp}&apikey=${apiKey}&hash=${hash}`
-            ).then((resposta) => {
-                return resposta.json();
-            }).then((jsonParsed) => {
-                console.log(jsonParsed)
-                const divHerois = document.querySelector('#herois');
+        fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${timeStamp}&apikey=${apiKey}&hash=${hash}`
+        ).then((resposta) => {
+            return resposta.json();
+        }).then((jsonParsed) => {
+            console.log(jsonParsed)
+            const divHerois = document.querySelector('#herois');
 
-                jsonParsed.data.results.forEach(element => {
-                    const srcImagem = element.thumbnail.path +'.'+ element.thumbnail.extension
-                    const nomeHeroi = element.name
-                    
-                    createDivHero(srcImagem, nomeHeroi, divHerois)
-                });
-            })
+            jsonParsed.data.results.forEach(element => {
+                const srcImagem   = element.thumbnail.path +'.'+ element.thumbnail.extension
+                const nomeHeroi   = element.name
 
-            function createDivHero(srcImagem, nomeHeroi, divHerois){
-                const divPai   = document.createElement('div')
-                const divFilho = document.createElement('div')
-                const textName = document.createElement('text')
-                const imagem   = document.createElement('img')
+                createDivHero(srcImagem, nomeHeroi, divHerois, element)
+            
+            });
+        })
 
-                textName.textContent = nomeHeroi
-                imagem.src = srcImagem
+        function createDivHero(srcImagem, nomeHeroi, divHerois, element){           
+            const divPai   = document.createElement('div')
+            const divFilho = document.createElement('div')
+            const divTexto = document.createElement('div')
+            const textName = document.createElement('text')
+            const imagem   = document.createElement('img')
 
-                divFilho.appendChild(imagem)
-                divFilho.appendChild(textName)
-                divPai.appendChild(divFilho)
-                divHerois.appendChild(divPai)
+            const container = document.createElement('div')
+            const descricao = document.createElement('div')
 
-                divPai.classList.add("personagem")
-            }
-        </script>
+            container.textContent = "Comics"
+            container.appendChild(descricao)
+
+            container.classList.add("container")
+            descricao.classList.add("descricao")
+
+            textName.textContent = nomeHeroi
+            imagem.src = srcImagem
+
+
+            divTexto.appendChild(textName)
+            divFilho.appendChild(imagem)
+            divFilho.appendChild(container)
+            divPai.appendChild(divFilho)
+            divPai.appendChild(divTexto)
+            divHerois.appendChild(divPai)
+
+            divFilho.classList.add("divFilho")
+            divTexto.classList.add("nomePersonagem")
+            divPai.classList.add("personagem")
+
+            element.comics.items.forEach(comic => {
+                var nameComic = comic.name
+                descricao.innerHTML += nameComic + "<br>"            
+            });
+            console.log(descricao)
+        }
+        
+    </script>
+    <footer id="rodape">
+            <text id="assinatura">
+                Projeto para utilização da Api Marvel.<br>
+                By: Angelo Bordin<br>
+                <a href="https://www.instagram.com/angelo_bordin/">Instagram</a> | 
+                <a href="https://www.linkedin.com/in/angelo-bordin/">Linkedin</a>
+            </text>
+    </footer>
 </html>

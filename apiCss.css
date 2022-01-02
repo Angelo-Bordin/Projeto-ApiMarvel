@@ -1,0 +1,87 @@
+@font-face{
+    font-family: 'marvel';
+    src: url('HeroesAssembleRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+img{
+    width: 300px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-right-style: solid;
+    align-self: initial;
+}
+
+text{
+    padding-left: 50px;
+}
+
+.nomePersonagem{
+   background-color: white;
+   border-bottom-left-radius: 16px;
+   border-bottom-right-radius: 16px;
+   border-top-style: solid;
+}
+
+.personagem{
+    width: 99.5%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-radius: 19px;
+}
+
+#cabecalho{
+    margin: 0px;
+    background-color: white;
+    border-style: solid;
+    text-align: center;
+    font-family: 'marvel', 'Times', serif;
+    font-size: normal;
+    font-weight: bold;
+}
+
+.divFilho{
+    display: flex;
+    justify-content: initial;
+    flex-wrap: nowrap;
+}
+
+.container{
+    align-self: center;
+    width: 73%;
+    height: 240px;
+    border-style: solid;
+    margin-left: 20px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#herois{
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+#corpo{
+    background-image: url("03.png");
+    background-size: 250px;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+#rodape{
+    margin: 0px;
+    text-align: center;
+    font-family: 'marvel', 'Times', serif;
+    font-size: normal;
+    font-weight: bold;
+}
+
+#assinatura{
+    background-color: white;
+}
+
+.descricao{
+    display: flex;
+}
